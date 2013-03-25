@@ -24,9 +24,12 @@ object Lists {
    * @return The sum of all elements in `xs`
    */
   def sum(xs: List[Int]): Int = {
-    var sum: Int = 0;
-    xs.foreach(x => sum = x + sum);
-    return sum;
+    if (xs.length == 0)
+      0;
+    else if (xs.length == 1)
+      xs.last
+    else
+      xs.last + sum(xs.dropRight(1))
   }
 
   /**
@@ -43,12 +46,11 @@ object Lists {
    * @throws java.util.NoSuchElementException if `xs` is an empty list
    */
   def max(xs: List[Int]): Int = {
-    var mx: Int = 0;
-
-    xs.foreach(x =>
-      if (x > mx)
-        mx = x)
-
-    return mx;
+    if (xs.length == 0)
+      throw new NoSuchElementException
+    else if (xs.length == 1)
+      xs.last
+    else
+      math.max(xs.last, max(xs.dropRight(1)))
   }
 }
