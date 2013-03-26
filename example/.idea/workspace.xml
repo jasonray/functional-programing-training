@@ -5,6 +5,10 @@
     <ignored path="example.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Lists.scala" changelist="49e88086-7af5-4d41-b0ad-ef2e7cc75676" time="1364247784267" ignored="false" />
+    <file path="/SquareRoot.scala" changelist="49e88086-7af5-4d41-b0ad-ef2e7cc75676" time="1364331399608" ignored="false" />
+    <file path="/a.dummy" changelist="49e88086-7af5-4d41-b0ad-ef2e7cc75676" time="1364329850514" ignored="false" />
+    <file path="/fragment.java" changelist="49e88086-7af5-4d41-b0ad-ef2e7cc75676" time="1364308374515" ignored="false" />
+    <file path="/SquareRootWorksheet.sc" changelist="49e88086-7af5-4d41-b0ad-ef2e7cc75676" time="1364331256886" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,10 +85,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ListsSuite.scala" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ListsSuite.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/scala/example/ListsSuite.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="112" column="26" selection-start="3925" selection-end="3926" vertical-scroll-proportion="0.8037383">
+            <state line="104" column="22" selection-start="3563" selection-end="3563" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SquareRoot.scala" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/newtonsquareroot/SquareRoot.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="8" selection-start="641" selection-end="641" vertical-scroll-proportion="0.55140185">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SquareRootWorksheet.sc" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/newtonsquareroot/SquareRootWorksheet.sc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="33" selection-start="179" selection-end="179" vertical-scroll-proportion="0.33066133">
               <folding />
             </state>
           </provider>
@@ -102,6 +124,9 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/scala/example/Lists.scala" />
         <option value="$PROJECT_DIR$/src/test/scala/example/ListsSuite.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/example/SquareRootTest.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/newtonsquareroot/SquareRootWorksheet.sc" />
+        <option value="$PROJECT_DIR$/src/main/scala/newtonsquareroot/SquareRoot.scala" />
       </list>
     </option>
   </component>
@@ -222,7 +247,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="example" />
+              <option name="myItemId" value="newtonsquareroot" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -245,24 +270,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="scala" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="example" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="example" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -290,7 +297,15 @@
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
   </component>
-  <component name="RunManager" selected="ScalaTest.ListsSuite">
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="example" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/scala" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Worksheet.WS: SquareRootWorksheet.sc">
     <configuration default="false" name="ListsSuite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
       <module name="assignment" />
       <setting name="path" value="example.ListsSuite" />
@@ -306,10 +321,37 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
+    <configuration default="false" name="SquareRootWorksheet.sc" type="ScalaScriptRunConfiguration" factoryName="Scala Script" temporary="true">
+      <module name="assignment" />
+      <setting name="path" value="$PROJECT_DIR$/src/main/scala/newtonsquareroot/SquareRootWorksheet.sc" />
+      <setting name="vmparams" value="" />
+      <setting name="consoleargs" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="WS: SquareRootWorksheet.sc" type="WorksheetRunConfiguration" factoryName="Worksheet" temporary="true">
+      <module name="assignment" />
+      <setting name="vmparams4" value="-Djline.terminal=NONE" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <setting name="worksheetField" value="$PROJECT_DIR$/src/main/scala/newtonsquareroot/SquareRootWorksheet.sc" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
       <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="WorksheetRunConfiguration" factoryName="Worksheet">
+      <module name="" />
+      <setting name="vmparams4" value="-Djline.terminal=NONE" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <setting name="worksheetField" value="" />
       <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -394,6 +436,15 @@
       <patterns />
       <method />
     </configuration>
+    <configuration default="true" type="ScalaScriptRunConfiguration" factoryName="Scala Script">
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="consoleargs" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <method />
+    </configuration>
     <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
       <module name="" />
       <setting name="path" value="" />
@@ -407,12 +458,16 @@
       <setting name="showProgressMessages" value="true" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="ScalaTest.ListsSuite" />
+      <item index="1" class="java.lang.String" itemvalue="Scala Script.SquareRootWorksheet.sc" />
+      <item index="2" class="java.lang.String" itemvalue="Worksheet.WS: SquareRootWorksheet.sc" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="ScalaTest.ListsSuite" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Worksheet.WS: SquareRootWorksheet.sc" />
+        <item index="1" class="java.lang.String" itemvalue="Scala Script.SquareRootWorksheet.sc" />
+        <item index="2" class="java.lang.String" itemvalue="ScalaTest.ListsSuite" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -449,7 +504,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="15" y="22" width="1660" height="959" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -459,13 +514,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32896304" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2496902" sideWeight="0.67103696" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32896304" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32896304" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -549,7 +604,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/scala/example/ListsSuite.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="112" column="26" selection-start="3925" selection-end="3926" vertical-scroll-proportion="0.8037383">
+        <state line="104" column="22" selection-start="3563" selection-end="3563" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/newtonsquareroot/SquareRootWorksheet.sc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="33" selection-start="179" selection-end="179" vertical-scroll-proportion="0.33066133">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/newtonsquareroot/SquareRoot.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="8" selection-start="641" selection-end="641" vertical-scroll-proportion="0.55140185">
           <folding />
         </state>
       </provider>
