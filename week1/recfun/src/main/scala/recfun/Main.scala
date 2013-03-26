@@ -32,7 +32,7 @@ object Main {
     def checkBalanceLoop(remainingChars: List[Char], unbalancedParens: Int): Boolean = {
       if (remainingChars.isEmpty) unbalancedParens == 0
       else if (remainingChars.head == leftparens) checkBalanceLoop(remainingChars.tail, unbalancedParens + 1)
-      else if ((remainingChars.head == rightparens) && (unbalancedParens==0)) false
+      else if ((remainingChars.head == rightparens) && (unbalancedParens == 0)) false
       else if (remainingChars.head == rightparens) checkBalanceLoop(remainingChars.tail, unbalancedParens - 1)
       else checkBalanceLoop(remainingChars.tail, unbalancedParens)
     }
@@ -43,5 +43,10 @@ object Main {
   /**
    * Exercise 3
    */
-  def countChange(money: Int, coins: List[Int]): Int = 0
+  def countChange(money: Int, coins: List[Int]): Int = {
+    if (money < 0) 0
+    else if (money == 0) 1
+    else if (coins.isEmpty)  0
+    else countChange(money - coins.head, coins) + countChange(money, coins.tail)
+  }
 }
