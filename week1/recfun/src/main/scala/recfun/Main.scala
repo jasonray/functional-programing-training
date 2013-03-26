@@ -25,7 +25,20 @@ object Main {
   /**
    * Exercise 2
    */
-  def balance(chars: List[Char]): Boolean = false
+  def balance(chars: List[Char]): Boolean = {
+    val leftparens: Char = "(".head
+    val rightparens: Char = ")".head
+
+    def checkBalanceLoop(remainingChars: List[Char], unbalancedParens: Int): Boolean = {
+      if (remainingChars.isEmpty) unbalancedParens == 0
+      else if (remainingChars.head == leftparens) checkBalanceLoop(remainingChars.tail, unbalancedParens + 1)
+      else if ((remainingChars.head == rightparens) && (unbalancedParens==0)) false
+      else if (remainingChars.head == rightparens) checkBalanceLoop(remainingChars.tail, unbalancedParens - 1)
+      else checkBalanceLoop(remainingChars.tail, unbalancedParens)
+    }
+
+    checkBalanceLoop(chars, 0)
+  }
 
   /**
    * Exercise 3
