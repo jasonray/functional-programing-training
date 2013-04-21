@@ -67,6 +67,34 @@ class TweetSetSuite extends FunSuite {
       val trends = set5.descendingByRetweet
       assert(!trends.isEmpty)
       assert(trends.head.user == "a" || trends.head.user == "b")
+      assert(trends.tail.head.user == "a" || trends.tail.head.user == "b")
+      assert(trends.tail.tail.head.user == "d")
+
     }
   }
+
+  test("google tweets") {
+    new TestSets {
+      val googleTweets = GoogleVsApple.googleTweets
+      println(googleTweets);
+
+      for (t <- googleTweets) {
+        println(t)
+      }
+
+    }
+  }
+
+  test("trending") {
+    new TestSets {
+      val trending = GoogleVsApple.trending
+
+      var i = 0;
+      for (t <- trending) {
+        i = i + 1
+        println("trending " + i + ": " + t)
+      }
+    }
+  }
+
 }
