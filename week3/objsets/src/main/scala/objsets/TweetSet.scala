@@ -68,6 +68,8 @@ abstract class TweetSet {
    */
   def mostRetweeted: Tweet
 
+  def moreRetweeted(currentMax: Tweet): Tweet
+
   /**
    * Returns a list containing all tweets of this set, sorted by retweet count
    * in descending order. In other words, the head of the resulting list should
@@ -125,7 +127,9 @@ class Empty extends TweetSet {
 
   def union(that: TweetSet): TweetSet = that
 
-  def mostRetweeted: Tweet = null;
+  def mostRetweeted: Nothing = throw new NoSuchElementException("cannot determine most retweeted from empty set")
+
+  def moreRetweeted(currentMax: Tweet): Tweet = currentMax;
 
   def descendingByRetweet: TweetList = Nil;
 
@@ -177,17 +181,11 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
     new Cons(mostRetweet, this.remove(mostRetweeted).descendingByRetweet)
   }
 
-  def mostRetweeted: Tweet = moreRetweets(elem, moreRetweets(left.mostRetweeted, right.mostRetweeted))
+  def mostRetweeted: Tweet = moreRetweeted(elem)
 
-  def moreRetweets(a: Tweet, b: Tweet): Tweet = {
-    if (b == null)
-      a;
-    else if (a == null)
-      b;
-    else if (a.retweets >= b.retweets)
-      a
-    else
-      b
+  def moreRetweeted(currentMax: Tweet): Tweet = {
+    val newCurrentMax = if (elem.retweets >= currentMax.retweets) elem else currentMax
+    right.moreRetweeted(left.moreRetweeted(newCurrentMax))
   }
 
 }
