@@ -227,7 +227,6 @@ object Huffman {
       case Leaf(char: Char, weight: Int) => {
         char :: decode(rootTree)(rootTree, bits);
       }
-
     }
   }
 
@@ -256,39 +255,27 @@ object Huffman {
    * into a sequence of bits.
    */
   def encode(tree: CodeTree)(text: List[Char]): List[Bit] = {
-    var bits = List[Bit]();
-    var nextNode = tree;
-    for (nextChar <- text) {
-      var found = false;
-      do {
-        nextNode match {
-          case Fork(left: CodeTree, right: CodeTree, chars: List[Char], weight: Int) => {
-            if (isCharInNode(left, nextChar)) {
-              println("about to add 0 to " + bits)
-              bits = bits :+ 0;
-              println("added 0 to " + bits)
-              nextNode = left;
-            } else if (isCharInNode(right, nextChar)) {
-              println("about to add 1 to " + bits)
-              bits = bits :+ 1;
-              println("added 1 to " + bits)
-              nextNode = right;
-            } else throw new RuntimeException("Cannot encode, unexpectedly got to node that doesn't support this char " + nextChar)
-          }
-          case Leaf(char: Char, weight: Int) => {
-            if (char != nextChar)
-              throw new RuntimeException("unexpectedly got to wrong leaf")
-            nextNode = tree;
-            found = true;
-          }
-        }
-      } while (!found)
-    }
-    println("created encoded bits: " + bits)
-    return bits;
+    encodeAccum(tree)(tree, text)
   }
 
-  //  private def encode(tree: CodeTree)(currentNode: CodeTree, text: List[Char]): List[Bit] = {}
+  private def encodeAccum(tree: CodeTree)(currentNode: CodeTree, text: List[Char]): List[Bit] = {
+    currentNode match {
+      case Fork(left: CodeTree, right: CodeTree, supportedChars: List[Char], weight: Int) => {
+        if (text.isEmpty)
+          List[Bit]();
+        else {
+          if (isCharInNode(left, text.head)) {
+            0 :: encodeAccum(tree)(left, text.tail)
+          } else if (isCharInNode(right, text.head)) {
+            1 :: encodeAccum(tree)(right, text.tail)
+          } else throw new RuntimeException("unexpectedly got to wrong fork")
+        }
+      }
+      case Leaf(supportchar: Char, weight: Int) => {
+        encodeAccum(tree)(tree, text)
+      }
+    }
+  }
 
   def isCharInNode(node: CodeTree, char: Char) = chars(node).contains(char)
 
@@ -356,5 +343,10 @@ object Huffman {
       bits = bits ++ codeBits(codeTable)(char)
     }
     bits;
+  }
+
+  private def quickEncodeAccum(codeTable: CodeTable)(text: List[Char]): List[Bit] = {}
+    if (text.isEmpty) List[Bit]()
+    else codeBits(codeTable)(text.head) ++ quickEncodeAccum(codeTable)(text.tail)
   }
 }
