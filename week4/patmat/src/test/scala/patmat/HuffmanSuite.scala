@@ -106,6 +106,10 @@ class HuffmanSuite extends FunSuite {
     val singleItemList = List[Leaf](Leaf('a', 1))
     assert(combine(singleItemList) === singleItemList)
   }
+  test("combine of two item list") {
+    val twoItemList = List[Leaf](Leaf('a', 1), Leaf('b', 1))
+    assert(combine(twoItemList) === List(Fork(Leaf('a', 1), Leaf('b', 1), List('a', 'b'), 2)))
+  }
 
   test("decode and encode a very short text should be identity") {
     new TestTrees {
@@ -167,10 +171,11 @@ class HuffmanSuite extends FunSuite {
     }
   }
 
-  //  test("create code tree") {
-  //    new TestTrees {
-  //      val phrase = "mary had a little lamb".toList
-  //      println("code tree: " + createCodeTree(phrase));
-  //    }
-  //  }
+  test("create code tree") {
+    new TestTrees {
+      val phrase = "mary had a little lamb".toList
+      val codetree = createCodeTree(phrase)
+      println("code tree: " + codetree);
+    }
+  }
 }
