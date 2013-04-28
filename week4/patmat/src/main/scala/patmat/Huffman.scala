@@ -71,17 +71,19 @@ object Huffman {
    *       println("integer is  : "+ theInt)
    *   }
    */
-  def times(chars: List[Char]): List[(Char, Int)] = times(chars, List[(Char, Int)]())
-
-  def times(chars: List[Char], charCount: List[(Char, Int)]): List[(Char, Int)] =
+  def times(chars: List[Char]): List[(Char, Int)] = {
     if (chars.length == 0)
-      charCount;
-    else
-      times(chars.tail, updateFreq(charCount, chars.head))
+      List[(Char, Int)]()
+    else {
+      val thisChar = chars.head
+      updateFreq(thisChar, times(chars.tail))
+    }
 
-  def updateFreq(charCount: List[(Char, Int)], char: Char): List[(Char, Int)] = updateFreq(charCount, char, 0)
+  }
 
-  def updateFreq(charCount: List[(Char, Int)], char: Char, n: Int): List[(Char, Int)] =
+  def updateFreq(char: Char, charCount: List[(Char, Int)]): List[(Char, Int)] = updateFreq(char, charCount, 0)
+
+  def updateFreq(char: Char, charCount: List[(Char, Int)], n: Int): List[(Char, Int)] = {
     if (n >= charCount.length)
       charCount :+ (char, 1)
     else
@@ -90,8 +92,9 @@ object Huffman {
           if (c == char)
             charCount updated (n, (char, count + 1))
           else
-            updateFreq(charCount, char, n + 1)
+            updateFreq(char, charCount, n + 1)
       }
+  }
 
   def printCharCount(charCount: List[(Char, Int)]) = {
     for (singleCharCount <- charCount) {
