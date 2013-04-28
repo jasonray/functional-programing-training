@@ -127,19 +127,15 @@ object Huffman {
     Leaf(freq._1, freq._2)
   }
 
-  def addNodeToTreeInOrder(node: CodeTree, nodes: List[CodeTree]): List[CodeTree] = {
-    addNodeToTreeInOrder(node, List[CodeTree](), nodes)
-  }
+  def addNodeToTreeInOrder(node: CodeTree, nodes: List[CodeTree]): List[CodeTree] = addNodeToTreeInOrder(node, List[CodeTree](), nodes)
 
-  def addNodeToTreeInOrder(node: CodeTree, newNodes: List[CodeTree], oldNodes: List[CodeTree]): List[CodeTree] = {
-    if (oldNodes.length == 0) {
+  def addNodeToTreeInOrder(node: CodeTree, newNodes: List[CodeTree], oldNodes: List[CodeTree]): List[CodeTree] =
+    if (oldNodes.length == 0)
       node :: newNodes
-    } else if (weight(node) < weight(oldNodes.head)) {
+    else if (weight(node) < weight(oldNodes.head))
       (node :: newNodes) ++ oldNodes
-    } else {
+    else
       addNodeToTreeInOrder(node, (oldNodes.head :: newNodes), oldNodes.tail)
-    }
-  }
 
   /**
    * Checks whether the list `trees` contains only one single code tree.
