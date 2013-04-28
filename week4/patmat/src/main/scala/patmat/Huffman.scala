@@ -71,15 +71,7 @@ object Huffman {
    *       println("integer is  : "+ theInt)
    *   }
    */
-  def times(chars: List[Char]): List[(Char, Int)] = {
-    var charCount = List[(Char, Int)]();
-
-    for (char <- chars) {
-      charCount = updateFreq(charCount, char);
-    }
-
-    charCount;
-  }
+  def times(chars: List[Char]): List[(Char, Int)] = times(chars, List[(Char, Int)]())
 
   def times(chars: List[Char], charCount: List[(Char, Int)]): List[(Char, Int)] =
     if (chars.length == 0)
