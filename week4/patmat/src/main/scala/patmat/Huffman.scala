@@ -289,13 +289,14 @@ object Huffman {
    * the code table `table`.
    */
   def codeBits(table: CodeTable)(char: Char): List[Bit] = {
-    var matchedBits: List[Bit] = null;
-    for (tableElement <- table) {
-      tableElement match {
-        case (c: Char, b: List[Bit]) => { if (c == char) matchedBits = b };
-      }
+    if (table.isEmpty) throw new RuntimeException("unable to find char " + char + " in code table")
+
+    table.head match {
+      case (c: Char, b: List[Bit]) => {
+        if (c == char) b
+        else codeBits(table.tail)(char)
+      };
     }
-    return matchedBits;
   }
 
   /**
