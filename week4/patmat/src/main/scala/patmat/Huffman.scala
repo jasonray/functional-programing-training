@@ -116,13 +116,12 @@ object Huffman {
       makeOrderedLeafList(freqs.tail, addToOrderedLeafList(createLeaf(freqs.head), orderedLeafs, 0))
   }
 
-  def addToOrderedLeafList(leaf: Leaf, orderedLeafs: List[Leaf], n: Int): List[Leaf] = {
+  def addToOrderedLeafList(leaf: Leaf, orderedLeafs: List[Leaf], n: Int): List[Leaf] =
     if (n >= orderedLeafs.length)
       orderedLeafs :+ leaf
     else if (weight(leaf) < weight(orderedLeafs(n)))
       ((orderedLeafs take n) :+ leaf) ++ (orderedLeafs drop n)
     else addToOrderedLeafList(leaf, orderedLeafs, n + 1)
-  }
 
   def createLeaf(freq: (Char, Int)): Leaf = {
     Leaf(freq._1, freq._2)
