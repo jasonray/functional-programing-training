@@ -100,7 +100,19 @@ class HuffmanSuite extends FunSuite {
 
   test("decode and encode a very short text should be identity") {
     new TestTrees {
-      assert(decode(t1, encode(t1)("ab".toList)) === "ab".toList)
+      val phrase = "ab"
+      assert(decode(t1, encode(t1)(phrase.toList)) === phrase.toList)
+    }
+  }
+
+  test("decode and encode a text with repeating chars") {
+    new TestTrees {
+      val phrase = "aba"
+      val encoded = encode(t1)(phrase.toList)
+      println("encoded " + phrase + " to " + encoded);
+      val decoded = decode(t1, encoded);
+      println("decoded " + encoded + " to " + decoded + " (original=" + phrase.toList + ")");
+      assert(decoded === phrase.toList)
     }
   }
 
@@ -112,7 +124,7 @@ class HuffmanSuite extends FunSuite {
 
   test("french decode") {
     new TestTrees {
-      println("phrase: " + decodedSecret);
+      println("french decoded phrase: " + decodedSecret);
     }
   }
 }

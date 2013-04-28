@@ -215,16 +215,21 @@ object Huffman {
     decode(tree)(tree, bits, List[Char]())
   }
 
-  def decode(rootTree: CodeTree)(currentNode: CodeTree, bits: List[Bit], chars: List[Char]): List[Char] = {
+  private def decode(rootTree: CodeTree)(currentNode: CodeTree, bits: List[Bit], chars: List[Char]): List[Char] = {
+    println("decoding " + bits + "; roottree=" + rootTree + "; node=" + currentNode + "; chars=" + chars)
     currentNode match {
-      case Fork(left: CodeTree, right: CodeTree, chars: List[Char], weight: Int) => {
-        if (bits.isEmpty) chars
-        else {
+      case Fork(left: CodeTree, right: CodeTree, supportedChars: List[Char], weight: Int) => {
+        if (bits.isEmpty) {
+          println("bits are empty, use " + chars)
+          chars
+        } else {
           val nextNode = if (bits.head == 0) left else right
+          println("bit=" + bits.head + ", moving on to nextnode " + nextNode + "; remaining bits=" + bits.tail)
           decode(rootTree)(nextNode, bits.tail, chars)
         }
       }
       case Leaf(char: Char, weight: Int) => {
+        println("arrived at leaf " + char)
         decode(rootTree)(rootTree, bits, chars :+ char);
       }
 
