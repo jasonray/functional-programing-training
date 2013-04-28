@@ -32,6 +32,23 @@ class HuffmanSuite extends FunSuite {
     }
   }
 
+  test("update freq of first element") {
+    val initialCharCount = List[(Char, Int)](('a', 1), ('b', 2))
+    val expectedResult = List[(Char, Int)](('a', 2), ('b', 2))
+    val actualResult = updateFreq(initialCharCount, 'a')
+    assert(actualResult == expectedResult, actualResult + " not equal to " + expectedResult)
+  }
+  test("update freq of last element") {
+    val initialCharCount = List[(Char, Int)](('a', 1), ('b', 2))
+    assert(updateFreq(initialCharCount, 'b') == List[(Char, Int)](('a', 1), ('b', 3)))
+  }
+  test("update freq of new element") {
+    val initialCharCount = List[(Char, Int)](('a', 1), ('b', 2))
+    val expectedResult = List[(Char, Int)](('a', 1), ('b', 2), ('c', 1))
+    val actualResult = updateFreq(initialCharCount, 'c')
+    assert(actualResult == expectedResult, actualResult + " not equal to " + expectedResult)
+  }
+
   test("weight of a larger tree") {
     new TestTrees {
       assert(weight(t1) === 5)
@@ -50,7 +67,7 @@ class HuffmanSuite extends FunSuite {
       assert(times(List('a', 'b', 'a')) == List(('a', 2), ('b', 1)))
 
       val result = times(List('d', 'a', 'b', 'c', 'd', 'd', 'c', 'a', 'c', 'd', 'd'));
-      val expectedResult = List(('b', 1), ('d', 5), ('a', 2), ('c', 3));
+      val expectedResult = List(('d', 5), ('a', 2), ('b', 1), ('c', 3));
       assert(result == expectedResult, result + " not equal to " + expectedResult)
     }
   }

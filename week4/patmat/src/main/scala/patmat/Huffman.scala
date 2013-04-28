@@ -81,28 +81,24 @@ object Huffman {
     charCount;
   }
 
-  def updateFreq(charCount: List[(Char, Int)], char: Char): List[(Char, Int)] = {
+  def updateFreq(charCount: List[(Char, Int)], char: Char): List[(Char, Int)] = updateFreq(charCount, char, 0)
 
-    println("updating char count for " + char)
-    var newCharCountList = List[(Char, Int)]();
-    var found = false;
-    for (singleCharCount <- charCount) yield {
-      if (singleCharCount._1 == char) {
-        println("found match for singlecharcount");
-        found = true;
-        newCharCountList = (singleCharCount._1, singleCharCount._2 + 1) :: newCharCountList
-      } else {
-        println("not a match for singlecharcount");
-        newCharCountList = (singleCharCount._1, singleCharCount._2) :: newCharCountList
+  def updateFreq(charCount: List[(Char, Int)], char: Char, n: Int): List[(Char, Int)] = {
+    if (n >= charCount.length) {
+      charCount :+ (char, 1)
+    } else {
+      charCount(n) match {
+        case (c: Char, count: Int) => {
+          if (c == char) {
+            println("found match, updating count")
+            charCount updated (n, (char, count + 1))
+          } else {
+            println("not match, proceed to next node")
+            updateFreq(charCount, char, n + 1)
+          }
+        }
       }
     }
-
-    if (!found) {
-      newCharCountList = (char, 1) :: newCharCountList
-    }
-
-    println("final freq:"); printCharCount(newCharCountList);
-    newCharCountList;
   }
 
   def printCharCount(charCount: List[(Char, Int)]) = {
