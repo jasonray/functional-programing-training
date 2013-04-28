@@ -141,6 +141,17 @@ class HuffmanSuite extends FunSuite {
     }
   }
 
+  test("encode/decode with french tree") {
+    val codeTree = frenchCode;
+    val phrase = "helloagain"
+    val encoded = encode(codeTree)(phrase.toList)
+    println("encoded " + phrase + " to " + encoded);
+    val decoded = decode(codeTree, encoded);
+    println("decoded " + encoded + " to " + decoded + " (original=" + phrase.toList + ")");
+    assert(decoded === phrase.toList)
+
+  }
+
   test("add node to beginning of tree") {
     new TestTrees {
       val tree = List(Leaf('a', 2))

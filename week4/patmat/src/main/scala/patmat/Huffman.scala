@@ -266,14 +266,14 @@ object Huffman {
           List[Bit]();
         else {
           if (isCharInNode(left, text.head)) {
-            0 :: encodeAccum(tree)(left, text.tail)
+            0 :: encodeAccum(tree)(left, text)
           } else if (isCharInNode(right, text.head)) {
-            1 :: encodeAccum(tree)(right, text.tail)
-          } else throw new RuntimeException("unexpectedly got to wrong fork")
+            1 :: encodeAccum(tree)(right, text)
+          } else throw new RuntimeException("unexpectedly got to wrong fork where neither side supported char " + text.head + "; this node supports " + supportedChars)
         }
       }
       case Leaf(supportchar: Char, weight: Int) => {
-        encodeAccum(tree)(tree, text)
+        encodeAccum(tree)(tree, text.tail)
       }
     }
   }
