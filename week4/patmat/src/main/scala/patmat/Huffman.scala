@@ -81,6 +81,12 @@ object Huffman {
     charCount;
   }
 
+  def times(chars: List[Char], charCount: List[(Char, Int)]): List[(Char, Int)] =
+    if (chars.length == 0)
+      charCount;
+    else
+      times(chars.tail, updateFreq(charCount, chars.head))
+
   def updateFreq(charCount: List[(Char, Int)], char: Char): List[(Char, Int)] = updateFreq(charCount, char, 0)
 
   def updateFreq(charCount: List[(Char, Int)], char: Char, n: Int): List[(Char, Int)] = {
