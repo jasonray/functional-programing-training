@@ -136,4 +136,41 @@ class HuffmanSuite extends FunSuite {
       println("french decoded phrase: " + decodedSecret);
     }
   }
+
+  test("add node to beginning of tree") {
+    new TestTrees {
+      val tree = List(Leaf('a', 2))
+      val node = Leaf('b', 1)
+      val expectedNewTree = List(Leaf('b', 1), Leaf('a', 2))
+      val result = addNodeToTreeInOrder(node, tree);
+      assert(result == expectedNewTree)
+    }
+  }
+
+  test("add node to end of tree") {
+    new TestTrees {
+      val tree = List(Leaf('a', 1))
+      val node = Leaf('b', 2)
+      val expectedNewTree = List(Leaf('a', 1), Leaf('b', 2))
+      val result = addNodeToTreeInOrder(node, tree);
+      assert(result == expectedNewTree, result + " did not equal " + expectedNewTree)
+    }
+  }
+
+  test("add node to middle of tree") {
+    new TestTrees {
+      val tree = List(Leaf('a', 1), Leaf('c', 3))
+      val node = Leaf('b', 2)
+      val expectedNewTree = List(Leaf('a', 1), Leaf('b', 2), Leaf('c', 3))
+      val result = addNodeToTreeInOrder(node, tree);
+      assert(result == expectedNewTree, result + " did not equal " + expectedNewTree)
+    }
+  }
+
+  //  test("create code tree") {
+  //    new TestTrees {
+  //      val phrase = "mary had a little lamb".toList
+  //      println("code tree: " + createCodeTree(phrase));
+  //    }
+  //  }
 }

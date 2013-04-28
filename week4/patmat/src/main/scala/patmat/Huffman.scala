@@ -127,15 +127,15 @@ object Huffman {
     Leaf(freq._1, freq._2)
   }
 
-  def addNodeToTreeInOrder(node: CodeTree, nodes: List[CodeTree]): List[CodeTree] = addNodeToTreeInOrder(node, List[CodeTree](), nodes)
+  def addNodeToTreeInOrder(node: CodeTree, nodes: List[CodeTree]): List[CodeTree] = addNodeToTreeInOrder(node, nodes, 0)
 
-  def addNodeToTreeInOrder(node: CodeTree, newNodes: List[CodeTree], oldNodes: List[CodeTree]): List[CodeTree] =
-    if (oldNodes.length == 0)
-      node :: newNodes
-    else if (weight(node) < weight(oldNodes.head))
-      (node :: newNodes) ++ oldNodes
+  def addNodeToTreeInOrder(node: CodeTree, nodes: List[CodeTree], n: Int): List[CodeTree] =
+    if (n >= nodes.length)
+      nodes :+ node
+    else if (weight(node) < weight(nodes(n)))
+      ((nodes take n) :+ node) ++ (nodes drop n)
     else
-      addNodeToTreeInOrder(node, (oldNodes.head :: newNodes), oldNodes.tail)
+      addNodeToTreeInOrder(node, nodes, n + 1)
 
   /**
    * Checks whether the list `trees` contains only one single code tree.
@@ -162,6 +162,7 @@ object Huffman {
       val left = trees.head
       val right = trees.tail.head
       val f = new Fork(left, right, chars(left) ++ chars(right), weight(left) + weight(right))
+      println("combining l=[" + left + "]+r=[" + right + "] => " + f)
       val tailOfTrees = trees.tail.tail;
       addNodeToTreeInOrder(f, trees.tail.tail);
     }
@@ -185,6 +186,7 @@ object Huffman {
    *  - try to find sensible parameter names for `xxx`, `yyy` and `zzz`.
    */
   def until(xxx: (List[CodeTree]) => Boolean, yyy: (List[CodeTree]) => List[CodeTree])(trees: List[CodeTree]): CodeTree = {
+    println("executing 'until' with " + trees)
     if (xxx(trees)) {
       trees.head
     } else {
@@ -199,9 +201,13 @@ object Huffman {
    * frequencies from that text and creates a code tree based on them.
    */
   def createCodeTree(chars: List[Char]): CodeTree = {
+    println("begin create code tree for " + chars)
     val freqOfChars = times(chars);
+    println("calculated freq of char " + freqOfChars)
     val orderedListOfLeafs = makeOrderedLeafList(freqOfChars);
+    println("orders leafs " + orderedListOfLeafs)
     val root = until(singleton, combine)(orderedListOfLeafs)
+    println("combined " + root)
     root;
   }
 
