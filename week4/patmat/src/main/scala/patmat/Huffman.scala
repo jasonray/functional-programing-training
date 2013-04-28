@@ -211,25 +211,20 @@ object Huffman {
    * This function decodes the bit sequence `bits` using the code tree `tree` and returns
    * the resulting list of characters.
    */
-  def decode(tree: CodeTree, bits: List[Bit]): List[Char] = {
+  def decode(tree: CodeTree, bits: List[Bit]): List[Char] =
     decode(tree)(tree, bits, List[Char]())
-  }
 
   private def decode(rootTree: CodeTree)(currentNode: CodeTree, bits: List[Bit], chars: List[Char]): List[Char] = {
-    println("decoding " + bits + "; roottree=" + rootTree + "; node=" + currentNode + "; chars=" + chars)
     currentNode match {
       case Fork(left: CodeTree, right: CodeTree, supportedChars: List[Char], weight: Int) => {
-        if (bits.isEmpty) {
-          println("bits are empty, use " + chars)
+        if (bits.isEmpty)
           chars
-        } else {
+        else {
           val nextNode = if (bits.head == 0) left else right
-          println("bit=" + bits.head + ", moving on to nextnode " + nextNode + "; remaining bits=" + bits.tail)
           decode(rootTree)(nextNode, bits.tail, chars)
         }
       }
       case Leaf(char: Char, weight: Int) => {
-        println("arrived at leaf " + char)
         decode(rootTree)(rootTree, bits, chars :+ char);
       }
 
