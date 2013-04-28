@@ -155,7 +155,9 @@ object Huffman {
    * unchanged.
    */
   def combine(trees: List[CodeTree]): List[CodeTree] = {
-    if (trees.length == 2) trees;
+    if (trees.length == 0) trees
+    else if (trees.length == 1) trees
+    else if (trees.length == 2) trees;
     else {
       val left = trees.head
       val right = trees.tail.head
