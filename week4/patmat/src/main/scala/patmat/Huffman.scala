@@ -212,33 +212,23 @@ object Huffman {
    * the resulting list of characters.
    */
   def decode(tree: CodeTree, bits: List[Bit]): List[Char] = {
-    println("decode bits=" + bits + "; tree=" + tree);
-    var charList = List[Char]();
-    var nextNode: CodeTree = tree;
-    for (bit <- bits) {
-      println("map next bit.  bit=" + bit + "; node=" + nextNode);
-      nextNode match {
-        case Fork(left: CodeTree, right: CodeTree, chars: List[Char], weight: Int) => {
-          if (bit == 0) nextNode = left;
-          else nextNode = right;
+    decode(tree)(tree, bits, List[Char]())
+  }
 
-          nextNode match {
-            case Fork(left: CodeTree, right: CodeTree, chars: List[Char], weight: Int) => {}
-            case Leaf(char: Char, weight: Int) => {
-              println("before.  char=" + char + "; chars=" + charList);
-              charList = charList :+ char;
-              println("after.  char=" + char + "; chars=" + charList);
-              nextNode = tree;
-            }
-
-          }
-
+  def decode(rootTree: CodeTree)(currentNode: CodeTree, bits: List[Bit], chars: List[Char]): List[Char] = {
+    currentNode match {
+      case Fork(left: CodeTree, right: CodeTree, chars: List[Char], weight: Int) => {
+        if (bits.isEmpty) chars
+        else {
+          val nextNode = if (bits.head == 0) left else right
+          decode(rootTree)(nextNode, bits.tail, chars)
         }
       }
-    }
+      case Leaf(char: Char, weight: Int) => {
+        decode(rootTree)(rootTree, bits, chars :+ char);
+      }
 
-    println("decoded bits to " + charList)
-    charList;
+    }
   }
 
   /**
@@ -298,7 +288,6 @@ object Huffman {
     }
     println("created encoded bits: " + bits)
     return bits;
-
   }
 
   def isCharInNode(node: CodeTree, char: Char) = chars(node).contains(char)
