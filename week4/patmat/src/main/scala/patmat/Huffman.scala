@@ -337,16 +337,9 @@ object Huffman {
    * and then uses it to perform the actual encoding.
    */
   def quickEncode(tree: CodeTree)(text: List[Char]): List[Bit] = {
-    val codeTable = convert(tree);
-    var bits = List[Bit]()
-    for (char <- text) {
-      bits = bits ++ codeBits(codeTable)(char)
-    }
-    bits;
+    quickEncodeAccum(convert(tree))(text);
   }
 
-  private def quickEncodeAccum(codeTable: CodeTable)(text: List[Char]): List[Bit] = {}
-    if (text.isEmpty) List[Bit]()
-    else codeBits(codeTable)(text.head) ++ quickEncodeAccum(codeTable)(text.tail)
-  }
+  private def quickEncodeAccum(codeTable: CodeTable)(text: List[Char]): List[Bit] = if (text.isEmpty) List[Bit]() else codeBits(codeTable)(text.head) ++ quickEncodeAccum(codeTable)(text.tail)
+
 }
