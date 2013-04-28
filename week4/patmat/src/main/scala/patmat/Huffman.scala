@@ -212,20 +212,20 @@ object Huffman {
    * the resulting list of characters.
    */
   def decode(tree: CodeTree, bits: List[Bit]): List[Char] =
-    decode(tree)(tree, bits, List[Char]())
+    decode(tree)(tree, bits)
 
-  private def decode(rootTree: CodeTree)(currentNode: CodeTree, bits: List[Bit], chars: List[Char]): List[Char] = {
+  private def decode(rootTree: CodeTree)(currentNode: CodeTree, bits: List[Bit]): List[Char] = {
     currentNode match {
       case Fork(left: CodeTree, right: CodeTree, supportedChars: List[Char], weight: Int) => {
         if (bits.isEmpty)
-          chars
+          List[Char]();
         else {
           val nextNode = if (bits.head == 0) left else right
-          decode(rootTree)(nextNode, bits.tail, chars)
+          decode(rootTree)(nextNode, bits.tail)
         }
       }
       case Leaf(char: Char, weight: Int) => {
-        decode(rootTree)(rootTree, bits, chars :+ char);
+        char :: decode(rootTree)(rootTree, bits);
       }
 
     }
@@ -273,8 +273,7 @@ object Huffman {
               bits = bits :+ 1;
               println("added 1 to " + bits)
               nextNode = right;
-            } else throw new RuntimeException("unexpectedly got to node that doesn't support char")
-
+            } else throw new RuntimeException("Cannot encode, unexpectedly got to node that doesn't support this char " + nextChar)
           }
           case Leaf(char: Char, weight: Int) => {
             if (char != nextChar)
@@ -284,11 +283,12 @@ object Huffman {
           }
         }
       } while (!found)
-
     }
     println("created encoded bits: " + bits)
     return bits;
   }
+
+  //  private def encode(tree: CodeTree)(currentNode: CodeTree, text: List[Char]): List[Bit] = {}
 
   def isCharInNode(node: CodeTree, char: Char) = chars(node).contains(char)
 
