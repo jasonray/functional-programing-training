@@ -107,32 +107,25 @@ object Huffman {
    * of a leaf is the frequency of the character.
    */
   def makeOrderedLeafList(freqs: List[(Char, Int)]): List[Leaf] = {
-    var leafs = List[Leaf]();
+    makeOrderedLeafList(freqs, List[Leaf]())
+  }
 
-    for (freq <- freqs) {
-      println("process freq: " + freq.toString);
-      val l = Leaf(freq._1, freq._2)
-      var newLeafs = List[Leaf]();
-      var found = false;
-      println("cumulative leafs: " + leafs.toString);
-      for (oldLeaf <- leafs) {
-        if (!found && freq._2 < oldLeaf.weight) {
-          found = true;
-          println("meets criteria, before adding l: " + newLeafs.toString)
-          newLeafs = newLeafs ++ List[Leaf](l)
-          println("after adding l: " + newLeafs.toString)
-        }
-        println("before adding oldLeaf: " + newLeafs.toString)
-        newLeafs = newLeafs :+ oldLeaf
-        println("after adding oldLeaf: " + newLeafs.toString)
-      }
+  def makeOrderedLeafList(freqs: List[(Char, Int)], orderedLeafs: List[Leaf]): List[Leaf] = {
+    if (freqs.length == 0) orderedLeafs;
+    else
+      makeOrderedLeafList(freqs.tail, addToOrderedLeafList(createLeaf(freqs.head), orderedLeafs, 0))
+  }
 
-      if (!found) newLeafs = newLeafs :+ l;
-      leafs = newLeafs;
-      println("ordered leafs: " + leafs.toString);
-    }
+  def addToOrderedLeafList(leaf: Leaf, orderedLeafs: List[Leaf], n: Int): List[Leaf] = {
+    if (n >= orderedLeafs.length)
+      orderedLeafs :+ leaf
+    else if (weight(leaf) < weight(orderedLeafs(n)))
+      ((orderedLeafs take n) :+ leaf) ++ (orderedLeafs drop n)
+    else addToOrderedLeafList(leaf, orderedLeafs, n + 1)
+  }
 
-    return leafs;
+  def createLeaf(freq: (Char, Int)): Leaf = {
+    Leaf(freq._1, freq._2)
   }
 
   def addNodeToTreeInOrder(node: CodeTree, nodes: List[CodeTree]): List[CodeTree] = {
